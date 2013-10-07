@@ -8,6 +8,4 @@
 
 # coding: utf-8
 
-Userinfo.create(:name => 'okimoto', :number => 'b211017' )
-Userinfo.create(:name => 'hogehoge', :number => 'hoooggeee' )
-Userinfo.create(:name => 'wtf', :number => 'sigh' )
+Userinfo.create(:name => 'okimoto', :number => 'b211017' , :time => Time.now)
