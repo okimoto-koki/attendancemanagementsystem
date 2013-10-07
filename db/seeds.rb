@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# coding: utf-8
+
+Userinfo.create(:name => 'okimoto', :number => 'b211017' )
+Userinfo.create(:name => 'hogehoge', :number => 'hoooggeee' )
+Userinfo.create(:name => 'wtf', :number => 'sigh' )
