@@ -1,5 +1,19 @@
 <h1>EDIT</h1>
 
-<p>
+<!-- <p>
 [email] <%= @editUserinfo.email %>, [name] <%= @editUserinfo.name%>,[number]<%= @editUserinfo.number%><br />
-</p>
+</p> -->
+
+<%= form_for(@user) do |u| %>
+<div class="field">
+	<%= u.label :name %><br>
+	<%= u.text_field :name %>
+</div>
+<div class="field">
+	<%= u.label :number %><br>
+    	<%= u.text_field :number %>
+</div>
+<div class="actions">
+	<%= u.submit %>
+</div>
+<%end %>
