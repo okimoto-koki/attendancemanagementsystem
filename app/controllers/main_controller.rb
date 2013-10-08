@@ -12,4 +12,8 @@ class MainController < ApplicationController
 		@newUserinfo.time = Time.now
 		@newUserinfo.save
 	end
+
+	def edit
+		@editUserinfo = User.find_by id: 2
+	end
 end

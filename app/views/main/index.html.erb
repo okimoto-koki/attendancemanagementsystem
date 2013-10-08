@@ -2,9 +2,19 @@
 
 <p>
 <% @userinfo.each do |userinfo| %>
-[name] <%= userinfo.name %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time%><br />
+[name] <%= current_user.email %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time%><br />
 <% end %>
 </p>
 
-
 <%= link_to '登録', 'new' %>
+<%= link_to 'edit', 'edit' %>
+<br>
+
+<% if user_signed_in? %>
+          Logged in as <strong><%= current_user.id %></strong>.
+          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+          <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
