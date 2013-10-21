@@ -9,6 +9,7 @@ Attendancemanagementsystem2::Application.routes.draw do
   get 'new' => 'main#new'
   get 'index' => 'main#index'
   get 'edit' => 'main#edit'
+  patch 'update' => 'main#update'
   post 'update' => 'main#update'
 
   # Example of regular route:

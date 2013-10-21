@@ -15,20 +15,16 @@ class MainController < ApplicationController
 
 	def edit
 		@editUserinfo = User.find_by id: 2
+		# @editUserinfo.name =  update[:name]
+		# @editUserinfo.number = update[:number]
+		# @editUserinfo.save
 	end
 
 	def update
-		@user.update(editUserinfo_params)
+		@updateUserinfo = User.find_by id: 2
+		@updateUserinfo.name =  params[:name]
+		@updateUserinfo.number = params[:number]
+		@updateUserinfo.save
+		
 	end
-
-	private
-    	# Use callbacks to share common setup or constraints between actions.
-    	def set_syusseki
-      		@user = User.find(params[:id])
-    	end
-
-    	# Never trust parameters from the scary internet, only allow the white list through.
-    	def user_params
-      		params.require(:user).permit(:name, :number)
-    	end
 end

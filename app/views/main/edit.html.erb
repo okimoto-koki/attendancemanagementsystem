@@ -6,17 +6,10 @@
 
 
 
-<%= form_for(@user) do |u| %>
- <div class="field">
- 	<%= u.label :na %><br>
- 	<%= u.text_field :name %>
- </div>
- <div class="field">
- 	<%= u.label :nu %><br>
-     	<%= u.text_field :number %>
- </div>
- <div class="actions">
- 	<%= u.submit %>
- </div>
- <%end %>
-
+<%= form_tag('update', :method => :post) do %>
+name:
+<%= text_field_tag("name", @editUserinfo.name) %><br>
+number:
+<%= text_field_tag("number", @editUserinfo.number) %><br>
+<%= submit_tag "update" %>
+<% end %>
