@@ -1,8 +1,8 @@
-<h1>TEST</h1>
+<h1>松本ゼミ勤怠管理</h1>
 
 <p>
 <% @userinfo.each do |userinfo| %>
-[name] <%= current_user.email %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time%><br />
+[name] <%= userinfo.name %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time%><br />
 <% end %>
 </p>
 

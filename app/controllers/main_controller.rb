@@ -7,21 +7,18 @@ class MainController < ApplicationController
 
 	def new
 		@newUserinfo = Userinfo.new
-		@newUserinfo.name = "test"
-		@newUserinfo.number = "hoge"
+		@newUserinfo.name = current_user.name
+		@newUserinfo.number = current_user.number
 		@newUserinfo.time = Time.now
 		@newUserinfo.save
 	end
 
 	def edit
-		@editUserinfo = User.find_by id: 2
-		# @editUserinfo.name =  update[:name]
-		# @editUserinfo.number = update[:number]
-		# @editUserinfo.save
+		@editUserinfo = User.find_by id: current_user.id
 	end
 
 	def update
-		@updateUserinfo = User.find_by id: 2
+		@updateUserinfo = User.find_by id: current_user.id
 		@updateUserinfo.name =  params[:name]
 		@updateUserinfo.number = params[:number]
 		@updateUserinfo.save
