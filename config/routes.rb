@@ -11,6 +11,7 @@ Attendancemanagementsystem2::Application.routes.draw do
   get 'edit' => 'main#edit'
   patch 'update' => 'main#update'
   post 'update' => 'main#update'
+  get 'index_all' => 'main#index_all'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

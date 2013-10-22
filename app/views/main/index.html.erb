@@ -3,13 +3,14 @@
 新
 <p>
 <% @userinfo.each do |userinfo| %>
-[name] <%= userinfo.name %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time%><br />
+[name] <%= userinfo.name %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time.strftime("%Y年%m月%d日 %H時%M分%S秒")%><br />
 <% end %>
 </p>
 旧 <br><br>
 
 <%= link_to '登録', 'new' %>
 <%= link_to 'EditProfile', 'edit' %>
+<%= link_to 'rireki', 'index_all' %>
 <br>
 
 <% if user_signed_in? %>

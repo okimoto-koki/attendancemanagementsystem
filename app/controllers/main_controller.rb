@@ -2,8 +2,11 @@ class MainController < ApplicationController
 	before_filter :authenticate_user!
 
 	def index
-		@userinfo = Userinfo.order("time DESC").limit(10).find_all_by_userId(current_user.id)
-		
+		@userinfo = Userinfo.order("time DESC").limit(10).find_all_by_userId(current_user.id)	
+	end
+
+	def index_all
+		@userinfoall = Userinfo.order("time DESC").find_all_by_userId(current_user.id)	
 	end
 
 	def new
