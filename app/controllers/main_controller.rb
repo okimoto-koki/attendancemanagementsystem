@@ -6,7 +6,7 @@ class MainController < ApplicationController
 	end
 
 	def index_all
-		@userinfoall = Userinfo.order("time DESC").find_all_by_userId(current_user.id)	
+		@userinfoall = Userinfo.order("time DESC").limit(50).find_all_by_userId(current_user.id)	
 	end
 
 	def new
@@ -19,14 +19,27 @@ class MainController < ApplicationController
 	end
 
 	def edit
-		@editUserinfo = User.find_by id: current_user.id
+		@editUser = User.find_by id: current_user.id
 	end
 
 	def update
-		@updateUserinfo = User.find_by id: current_user.id
-		@updateUserinfo.name =  params[:name]
-		@updateUserinfo.number = params[:number]
-		@updateUserinfo.save
-		
+		@updateUser = User.find_by id: current_user.id
+		@updateUser.name =  params[:name]
+		@updateUser.number = params[:number]
+		@updateUser.save	
 	end
+
+	def admin_index
+		@adminUserinfo = Userinfo.order("time DESC").all
+	end
+
+	def admin_find
+
+	end
+
+	def admin_result
+		@resultUser = User.find_by number: params[:number]
+		@userinfoall = Userinfo.order("time DESC").limit(50).find_all_by_userId(@resultUser.id)
+	end
+
 end

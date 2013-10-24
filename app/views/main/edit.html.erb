@@ -1,16 +1,16 @@
 <h1>EDIT</h1>
 
 <p>
-[email] <%= @editUserinfo.email %>, [name] <%= @editUserinfo.name%>,[number]<%= @editUserinfo.number%><br />
+[email] <%= @editUser.email %>, [name] <%= @editUser.name%>,[number]<%= @editUser.number%><br />
 </p>
 
 
 
 <%= form_tag('update', :method => :post) do %>
 name:
-<%= text_field_tag("name", @editUserinfo.name) %><br>
+<%= text_field_tag("name", @editUser.name) %><br>
 number:
-<%= text_field_tag("number", @editUserinfo.number) %><br>
+<%= text_field_tag("number", @editUser.number) %><br>
 <%= submit_tag "update" %>
 <% end %>
 

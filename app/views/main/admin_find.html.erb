@@ -1,0 +1,7 @@
+<h1>kensaku</h1>
+
+<%= form_tag('admin_result', :method => :post) do %>
+number:
+<%= text_field_tag("number", params[:number]) %><br>
+<%= submit_tag "kensaku" %>
+<% end %>

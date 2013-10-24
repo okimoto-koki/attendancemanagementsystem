@@ -1,17 +1,18 @@
-<h1>松本ゼミ勤怠管理(personal)</h1>
+<h1>松本ゼミ勤怠管理(admin)</h1>
 
-新
+<%= link_to 'kensaku', 'admin_find' %>
+<%= link_to 'EditProfile', 'edit' %>
+<%= link_to 'TOP', 'index' %><br>
+
+新50
 <p>
-<% @userinfo.each do |userinfo| %>
-[name] <%= userinfo.name %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time.strftime("%Y年%m月%d日 %H時%M分%S秒")%><br />
+<% @adminUserinfo.each do |userinfo| %>
+[name] <%= userinfo.name %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time %><br />
 <% end %>
 </p>
 旧 <br><br>
 
-<%= link_to '登録', 'new' %>
-<%= link_to 'EditProfile', 'edit' %>
-<%= link_to 'rireki', 'index_all' %>
-<%= link_to 'admin(test)', 'admin_index' %>
+
 <br>
 
 <% if user_signed_in? %>
