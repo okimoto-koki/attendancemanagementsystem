@@ -3,7 +3,7 @@
 新
 <p>
 <% @userinfo.each do |userinfo| %>
-[name] <%= userinfo.name %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time.strftime("%Y年%m月%d日 %H時%M分%S秒")%><br />
+[name] <%= userinfo.name %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time.strftime("%Y年%m月%d日 %H時%M分%S秒")%><%= $day.wday %><br />
 <% end %>
 </p>
 旧 <br><br>

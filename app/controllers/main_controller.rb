@@ -3,6 +3,8 @@ class MainController < ApplicationController
 
 	def index
 		@userinfo = Userinfo.order("time DESC").limit(10).find_all_by_userId(current_user.id)	
+		$day = Time.now
+
 	end
 
 	def index_all
@@ -40,6 +42,16 @@ class MainController < ApplicationController
 	def admin_result
 		@resultUser = User.find_by number: params[:number]
 		@userinfoall = Userinfo.order("time DESC").limit(50).find_all_by_userId(@resultUser.id)
+	end
+
+	def admin_time_config
+
+	end
+
+	def admin_time_config_new
+		$youbi = params[:youbi]
+		$hour = params[:hour]
+		$minitus = params[:minitus]
 	end
 
 end

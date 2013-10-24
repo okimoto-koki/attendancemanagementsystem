@@ -4,6 +4,11 @@
 [email] <%= @resultUser.email %>, [name] <%= @resultUser.name%>,[number]<%= @resultUser.number%><br />
 </p>
 <br><br>
+sinki 50ko <br>
 <% @userinfoall.each do |userinfo| %>
 <%= userinfo.id %>[name] <%= userinfo.name %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time.strftime("%Y年%m月%d日 %H時%M分%S秒")%><br />
 <% end %>
+
+<p>
+<%= link_to 'TOP', 'admin_index' %>
+</p>
