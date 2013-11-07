@@ -1,17 +1,17 @@
-<h1>EDIT</h1>
+<h1>プロフィール編集</h1>
 
 <p>
-[email] <%= @editUser.email %>, [name] <%= @editUser.name%>,[number]<%= @editUser.number%><br />
+[メールアドレス] <%= @editUser.email %>, [名前] <%= @editUser.name%>,[学生番号]<%= @editUser.number%><br />
 </p>
 
 
 
 <%= form_tag('update', :method => :post) do %>
 name:
-<%= text_field_tag("name", @editUser.name) %><br>
+<%= text_field_tag("名前", @editUser.name) %><br>
 number:
-<%= text_field_tag("number", @editUser.number) %><br>
-<%= submit_tag "update" %>
+<%= text_field_tag("学生番号", @editUser.number) %><br>
+<%= submit_tag "登録" %>
 <% end %>
 
 <p>

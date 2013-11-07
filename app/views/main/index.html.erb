@@ -1,12 +1,12 @@
 <h1>松本ゼミ勤怠管理(personal)</h1>
-true ga tikoku
+falseが遅刻
 <table border="1">
 <thead>
 	<tr>
-		<th>name</th>
-		<th>number</th>
-		<th>time</th>
-		<th>check</th>
+		<th>名前</th>
+		<th>学生番号</th>
+		<th>登録時間</th>
+		<th>遅刻判定</th>
 	</tr>
 </thead>
 <br>
@@ -25,16 +25,16 @@ true ga tikoku
  <br><br>
 
 <%= link_to '登録', 'new' %>
-<%= link_to 'EditProfile', 'edit' %>
-<%= link_to 'rireki', 'index_all' %>
-<%= link_to 'admin(test)', 'admin_index' %>
+<%= link_to 'プロフィール編集', 'edit' %>
+<%= link_to '履歴', 'index_all' %>
+<%= link_to '管理者用ページ', 'admin_index' %>
 <br><br>
 
 <% if user_signed_in? %>
           Logged in as <strong><%= current_user.name %></strong>.
-          <%= link_to 'Change Email', edit_user_registration_path, :class => 'navbar-link' %> |
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          <%= link_to 'メールアドレスの変更', edit_user_registration_path, :class => 'navbar-link' %> |
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
         <% else %>
-          <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-          <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+          <%= link_to "新規登録", new_user_registration_path, :class => 'navbar-link'  %> |
+          <%= link_to "ログイン", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>

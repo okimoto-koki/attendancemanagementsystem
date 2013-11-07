@@ -17,13 +17,14 @@ class MainController < ApplicationController
 		@newUserinfo.number = current_user.number
 		@newUserinfo.userId = current_user.id
 		@newUserinfo.time = Time.now
-		# @timeCheck = TimeConfig.find(15)
+		@timeCheck = TimeConfig.find_by activation: 1
 		
-		# if @newUserinfo.time.hour >= @timeCheck.start_hour && @newUserinfo.time.min >= @timeCheck.start_minitus then 
-		# 	@newUserinfo.check = 1
-		# else 
-		# 	@newUserinfo.check = 0
-		# end
+		#遅刻判定部分true(1)で出席
+		if @newUserinfo.time.hour >= @timeCheck.start_hour && @newUserinfo.time.min >= @timeCheck.start_minitus then 
+			@newUserinfo.check = 1
+		else 
+			@newUserinfo.check = 0
+		end
 		
 		@newUserinfo.save
 	end
