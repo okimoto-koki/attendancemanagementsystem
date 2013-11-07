@@ -9,7 +9,6 @@ Attendancemanagementsystem2::Application.routes.draw do
   get 'new' => 'main#new'
   get 'index' => 'main#index'
   get 'edit' => 'main#edit'
-  patch 'update' => 'main#update'
   post 'update' => 'main#update'
   get 'index_all' => 'main#index_all'
   get 'admin_index' => 'main#admin_index'
@@ -17,6 +16,11 @@ Attendancemanagementsystem2::Application.routes.draw do
   post 'admin_result' => 'main#admin_result'
   get 'admin_time_config' => 'main#admin_time_config'
   post 'admin_time_config_new' => 'main#admin_time_config_new'
+  delete 'admin_time_config_destroy' => 'main#admin_time_config_destroy'
+  put 'admin_time_config_active_on' => 'main#admin_time_config_active_on'
+  put 'admin_time_config_active_off' => 'main#admin_time_config_active_off'
+
+  resources :main
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

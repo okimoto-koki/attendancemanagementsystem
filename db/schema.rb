@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131022025725) do
+ActiveRecord::Schema.define(version: 20131107063122) do
+
+  create_table "time_configs", force: true do |t|
+    t.integer  "youbi"
+    t.integer  "start_hour"
+    t.integer  "start_minitus"
+    t.integer  "end_hour"
+    t.integer  "end_minitus"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "active"
+    t.integer  "activation"
+  end
 
   create_table "userinfos", force: true do |t|
     t.string   "name"
@@ -20,6 +32,7 @@ ActiveRecord::Schema.define(version: 20131022025725) do
     t.datetime "updated_at"
     t.datetime "time"
     t.integer  "userId"
+    t.boolean  "check"
   end
 
   create_table "users", force: true do |t|

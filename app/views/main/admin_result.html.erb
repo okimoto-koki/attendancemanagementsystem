@@ -4,11 +4,29 @@
 [email] <%= @resultUser.email %>, [name] <%= @resultUser.name%>,[number]<%= @resultUser.number%><br />
 </p>
 <br><br>
-sinki 50ko <br>
+<table border="1">
+<thead>
+	<tr>
+		<th>name</th>
+		<th>number</th>
+		<th>time</th>
+		<th>check</th>
+		<th>delete</th>
+	</tr>
+</thead>
+<br>
+<tbody>
 <% @userinfoall.each do |userinfo| %>
-<%= userinfo.id %>[name] <%= userinfo.name %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time.strftime("%Y年%m月%d日 %H時%M分%S秒")%><br />
+	<tr>
+ 		<td><%= userinfo.name %></td>
+ 		<td><%= userinfo.number%></td>
+ 		<td><%= userinfo.time.strftime("%Y年%m月%d日 %H時%M分%S秒")%></td>
+ 		<td><%= userinfo.check %></td>
+ 		<td><%= button_to "削除", { :action => "destroy", :id => userinfo.id }, :confirm => "本当に削除しますか?", :method => :delete %></td>
+ 	</tr>
 <% end %>
-
+</tbody>
+</table>
 <p>
 <%= link_to 'TOP', 'admin_index' %>
 </p>

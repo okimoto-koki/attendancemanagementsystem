@@ -1,10 +1,29 @@
 <h1>rireki</h1>
 
+<table border="1">
+<thead>
+	<tr>
+		<th>ID</th>
+		<th>name</th>
+		<th>number</th>
+		<th>time</th>
+		<th>check</th>
+		
+	</tr>
+</thead>
+<br>
+<tbody>
 <% @userinfoall.each do |userinfo| %>
-<%= userinfo.id %>[name] <%= userinfo.name %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time.strftime("%Y年%m月%d日 %H時%M分%S秒")%><br />
+	<tr>
+		<td><%= userinfo.id %></td>
+ 		<td><%= userinfo.name %></td>
+ 		<td><%= userinfo.number%></td>
+ 		<td><%= userinfo.time.strftime("%Y年%m月%d日 %H時%M分%S秒")%></td>
+ 		<td><%= userinfo.check %></td>
+ 	</tr>
 <% end %>
-
-
+</tbody>
+</table>
 <p>
 <%= link_to 'TOP', 'index' %>
 </p>

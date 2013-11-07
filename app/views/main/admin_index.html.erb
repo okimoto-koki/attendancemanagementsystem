@@ -6,13 +6,30 @@
 <%= link_to 'TOP', 'index' %><br>
 
 新50
-<p>
+<table border="1">
+<thead>
+	<tr>
+		<th>name</th>
+		<th>number</th>
+		<th>time</th>
+		<th>check</th>
+		<th>delete</th>
+		
+	</tr>
+</thead>
+<br>
+<tbody>
 <% @adminUserinfo.each do |userinfo| %>
-[name] <%= userinfo.name %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time %><br />
+	<tr>
+ 		<td><%= userinfo.name %></td>
+ 		<td><%= userinfo.number%></td>
+ 		<td><%= userinfo.time%></td>
+ 		<td><%= userinfo.check %></td>
+ 		<td><%= button_to "削除", { :action => "destroy", :id => userinfo.id }, :confirm => "本当に削除しますか?", :method => :delete %></td>
+ 	</tr>
 <% end %>
-</p>
-旧 <br><br>
-
+</tbody>
+</table>
 
 <br>
 

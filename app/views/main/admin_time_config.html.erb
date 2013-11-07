@@ -1,14 +1,60 @@
 <h1>TIME CONFIG</h1>
 
 <%= form_tag('admin_time_config_new', :method => :post) do %>
-youbi
 <%= select_tag 'youbi', options_for_select([["日", 0],["月",1],["火",2],["水",3],["木",4],["金",5],["土",6]]) %>
-hour
-<%= select_tag 'hour', options_for_select([["0", 0], ["1", 1],["2", 2], ["3", 3],["4", 4], ["5", 5],["6", 6], ["7", 7],["8", 8], ["9", 9],["10", 10], ["11", 11],["12", 12], ["13", 13],["14", 14], ["15", 15],["16", 16], ["17", 17],["18", 18], ["19", 19],["20", 20], ["21", 21],["22",22], ["23", 23]]) %>
-minitus
-<%= select_tag 'minitus', options_for_select([["0", 0], ["5", 5],["10", 10], ["15", 15],["20", 20], ["25", 25],["30", 30], ["35", 35],["40", 40], ["45", 45],["50", 50], ["55", 55]]) %>
+youbi
+
+<%= select_tag 's_hour', options_for_select([["0", 0], ["1", 1],["2", 2], ["3", 3],["4", 4], ["5", 5],["6", 6], ["7", 7],["8", 8], ["9", 9],["10", 10], ["11", 11],["12", 12], ["13", 13],["14", 14], ["15", 15],["16", 16], ["17", 17],["18", 18], ["19", 19],["20", 20], ["21", 21],["22",22], ["23", 23]]) %>
+ji
+<%= select_tag 's_minitus', options_for_select([["0", 0], ["5", 5],["10", 10], ["15", 15],["20", 20], ["25", 25],["30", 30], ["35", 35],["40", 40], ["45", 45],["50", 50], ["55", 55]]) %>
+hun
+~~
+<%= select_tag 'e_hour', options_for_select([["0", 0], ["1", 1],["2", 2], ["3", 3],["4", 4], ["5", 5],["6", 6], ["7", 7],["8", 8], ["9", 9],["10", 10], ["11", 11],["12", 12], ["13", 13],["14", 14], ["15", 15],["16", 16], ["17", 17],["18", 18], ["19", 19],["20", 20], ["21", 21],["22",22], ["23", 23]]) %>
+ji
+<%= select_tag 'e_minitus', options_for_select([["0", 0], ["5", 5],["10", 10], ["15", 15],["20", 20], ["25", 25],["30", 30], ["35", 35],["40", 40], ["45", 45],["50", 50], ["55", 55]]) %>
+hun
 <%= submit_tag "create" %>
 <% end %>
+
+<p>
+
+<table border="1">
+<thead>
+	<tr>
+		<th>id</th>
+		<th>youbi</th>
+		<th>start_hour</th>
+		<th>start_min</th>
+		<th>end_hour</th>
+		<th>end_min</th>
+		<th>active</th>
+		<th>delete</th>
+		
+	</tr>
+</thead>
+<br>
+<tbody>
+<% @indexTimeConfig.each do |index| %>
+	<tr>
+		<td><%= index.id %></td>
+ 		<td><%= index.youbi %></td>
+ 		<td><%= index.start_hour%></td>
+ 		<td><%= index.start_minitus%></td>
+ 		<td><%= index.end_hour %></td>
+ 		<td><%= index.end_minitus %></td>
+ 		<td>
+ 			<% if index.activation == 0  then %>
+ 			<%= button_to "on", { :action => "admin_time_config_active_on", :id => index.id }, :confirm => "actevate?", :method => :put %>
+ 			<% else%>
+ 			<%= button_to "off", { :action => "admin_time_config_active_off", :id => index.id }, :confirm => "actevate?", :method => :put %>
+ 			<% end%>
+ 		</td>
+ 		<td><%= button_to "削除", { :action => "admin_time_config_destroy", :id => index.id }, :confirm => "本当に削除しますか?", :method => :delete %></td>
+ 	</tr>
+<% end %>
+</tbody>
+</table>
+</p>
 
 <p>
 <%= link_to 'TOP', 'admin_index' %>

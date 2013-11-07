@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  youbi: 1
+  start_hour: 1
+  start_minitus: 1
+  end_hour: 1
+  end_minitus: 1
+
+two:
+  youbi: 1
+  start_hour: 1
+  start_minitus: 1
+  end_hour: 1
+  end_minitus: 1

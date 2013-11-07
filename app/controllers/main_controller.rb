@@ -17,6 +17,14 @@ class MainController < ApplicationController
 		@newUserinfo.number = current_user.number
 		@newUserinfo.userId = current_user.id
 		@newUserinfo.time = Time.now
+		# @timeCheck = TimeConfig.find(15)
+		
+		# if @newUserinfo.time.hour >= @timeCheck.start_hour && @newUserinfo.time.min >= @timeCheck.start_minitus then 
+		# 	@newUserinfo.check = 1
+		# else 
+		# 	@newUserinfo.check = 0
+		# end
+		
 		@newUserinfo.save
 	end
 
@@ -29,6 +37,12 @@ class MainController < ApplicationController
 		@updateUser.name =  params[:name]
 		@updateUser.number = params[:number]
 		@updateUser.save	
+	end
+
+	def destroy
+		@d_userinfo = Userinfo.find_by id: params[:id]
+		@d_userinfo.delete
+		redirect_to :back
 	end
 
 	def admin_index
@@ -45,13 +59,38 @@ class MainController < ApplicationController
 	end
 
 	def admin_time_config
-
+		@indexTimeConfig = TimeConfig.order("youbi ,start_hour , start_minitus").all
 	end
 
 	def admin_time_config_new
-		$youbi = params[:youbi]
-		$hour = params[:hour]
-		$minitus = params[:minitus]
+		@newTimeConfig = TimeConfig.new
+		@newTimeConfig.youbi = params[:youbi]
+		@newTimeConfig.start_hour = params[:s_hour]
+		@newTimeConfig.start_minitus = params[:s_minitus]
+		@newTimeConfig.end_hour = params[:e_hour]
+		@newTimeConfig.end_minitus = params[:e_minitus]
+		@newTimeConfig.activation = 0
+		@newTimeConfig.save
+	end
+
+	def admin_time_config_active_on
+		@active_timeconfig = TimeConfig.find_by id: params[:id]
+		@active_timeconfig.activation = 1
+		@active_timeconfig.save
+		redirect_to :back
+	end
+
+	def admin_time_config_active_off
+		@active_timeconfig = TimeConfig.find_by id: params[:id]
+		@active_timeconfig.activation = 0
+		@active_timeconfig.save
+		redirect_to :back
+	end
+
+	def admin_time_config_destroy
+		@d_timeconfig = TimeConfig.find_by id: params[:id]
+		@d_timeconfig.delete
+		# redirect_to :back
 	end
 
 end

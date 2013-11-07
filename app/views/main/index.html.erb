@@ -1,18 +1,34 @@
 <h1>松本ゼミ勤怠管理(personal)</h1>
-
-新
-<p>
+true ga tikoku
+<table border="1">
+<thead>
+	<tr>
+		<th>name</th>
+		<th>number</th>
+		<th>time</th>
+		<th>check</th>
+	</tr>
+</thead>
+<br>
+<tbody>
 <% @userinfo.each do |userinfo| %>
-[name] <%= userinfo.name %>, [number] <%= userinfo.number%>,[time]<%= userinfo.time.strftime("%Y年%m月%d日 %H時%M分%S秒")%><%= $day.wday %><br />
+	<tr>
+ 		<td><%= userinfo.name %></td>
+ 		<td><%= userinfo.number%></td>
+ 		<td><%= userinfo.time.strftime("%Y年%m月%d日 %H時%M分%S秒")%></td>
+ 		<td><%= userinfo.check %></td>
+ 	</tr>
 <% end %>
-</p>
-旧 <br><br>
+</tbody>
+</table>
+
+ <br><br>
 
 <%= link_to '登録', 'new' %>
 <%= link_to 'EditProfile', 'edit' %>
 <%= link_to 'rireki', 'index_all' %>
 <%= link_to 'admin(test)', 'admin_index' %>
-<br>
+<br><br>
 
 <% if user_signed_in? %>
           Logged in as <strong><%= current_user.name %></strong>.
