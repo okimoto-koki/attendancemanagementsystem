@@ -13,9 +13,10 @@
 時
 <%= select_tag 'e_minitus', options_for_select([["0", 0], ["5", 5],["10", 10], ["15", 15],["20", 20], ["25", 25],["30", 30], ["35", 35],["40", 40], ["45", 45],["50", 50], ["55", 55]]) %>
 分
+まで
 <%= submit_tag "create" %>
 <% end %>
-まで
+
 <p>
 
 <table border="1">
@@ -27,7 +28,7 @@
 		<th>開始分</th>
 		<th>終了時</th>
 		<th>終了分</th>
-		<th>有効化</th>
+		<th>状態</th>
 		<th>削除</th>
 		
 	</tr>
@@ -44,9 +45,9 @@
  		<td><%= index.end_minitus %></td>
  		<td>
  			<% if index.activation == 0  then %>
- 			<%= button_to "on", { :action => "admin_time_config_active_on", :id => index.id }, :confirm => "有効化しますか？", :method => :put %>
+ 			<%= button_to "無効", { :action => "admin_time_config_active_on", :id => index.id }, :confirm => "有効化しますか？", :method => :put %>
  			<% else%>
- 			<%= button_to "off", { :action => "admin_time_config_active_off", :id => index.id }, :confirm => "無効化しますか？", :method => :put %>
+ 			<%= button_to "有効", { :action => "admin_time_config_active_off", :id => index.id }, :confirm => "無効化しますか？", :method => :put %>
  			<% end%>
  		</td>
  		<td><%= button_to "削除", { :action => "admin_time_config_destroy", :id => index.id }, :confirm => "本当に削除しますか?", :method => :delete %></td>
