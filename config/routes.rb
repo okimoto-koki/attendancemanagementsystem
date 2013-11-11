@@ -15,10 +15,12 @@ Attendancemanagementsystem2::Application.routes.draw do
   get 'admin_find' => 'main#admin_find'
   post 'admin_result' => 'main#admin_result'
   get 'admin_time_config' => 'main#admin_time_config'
+    get 'ex_admin_time_config' => 'main#ex_admin_time_config'
   post 'admin_time_config_new' => 'main#admin_time_config_new'
   delete 'admin_time_config_destroy' => 'main#admin_time_config_destroy'
   put 'admin_time_config_active_on' => 'main#admin_time_config_active_on'
   put 'admin_time_config_active_off' => 'main#admin_time_config_active_off'
+
 
   resources :main
 

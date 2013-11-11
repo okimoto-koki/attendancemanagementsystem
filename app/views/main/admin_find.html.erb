@@ -1,9 +1,9 @@
-<h1>kensaku</h1>
+<h1>検索</h1>
 
 <%= form_tag('admin_result', :method => :post) do %>
-number:
+学生番号:
 <%= text_field_tag("number", params[:number]) %><br>
-<%= submit_tag "kensaku" %>
+<%= submit_tag "検索" %>
 <% end %>
 
 <p>

@@ -7,10 +7,10 @@
 
 
 <%= form_tag('update', :method => :post) do %>
-name:
-<%= text_field_tag("名前", @editUser.name) %><br>
-number:
-<%= text_field_tag("学生番号", @editUser.number) %><br>
+名前:
+<%= text_field_tag("name", @editUser.name) %><br>
+学生番号:
+<%= text_field_tag("number", @editUser.number) %><br>
 <%= submit_tag "登録" %>
 <% end %>
 

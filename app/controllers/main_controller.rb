@@ -17,15 +17,15 @@ class MainController < ApplicationController
 		@newUserinfo.number = current_user.number
 		@newUserinfo.userId = current_user.id
 		@newUserinfo.time = Time.now
-		@timeCheck = TimeConfig.find_by activation: 1
+		@timeCheck = TimeConfig.where(["activation = ? and youbi = ? ", 1, @newUserinfo.time.wday]).first
 		
-		#遅刻判定部分true(1)で出席
+		#####遅刻判定部分true(1)で出席#####
 		if @newUserinfo.time.hour >= @timeCheck.start_hour && @newUserinfo.time.min >= @timeCheck.start_minitus then 
 			@newUserinfo.check = 1
 		else 
 			@newUserinfo.check = 0
 		end
-		
+		###############################
 		@newUserinfo.save
 	end
 
@@ -46,6 +46,8 @@ class MainController < ApplicationController
 		redirect_to :back
 	end
 
+	########以下管理者用########
+
 	def admin_index
 		@adminUserinfo = Userinfo.order("time DESC").all
 	end
@@ -65,11 +67,15 @@ class MainController < ApplicationController
 
 	def admin_time_config_new
 		@newTimeConfig = TimeConfig.new
-		@newTimeConfig.youbi = params[:youbi]
-		@newTimeConfig.start_hour = params[:s_hour]
-		@newTimeConfig.start_minitus = params[:s_minitus]
-		@newTimeConfig.end_hour = params[:e_hour]
-		@newTimeConfig.end_minitus = params[:e_minitus]
+		# @newTimeConfig.youbi = params[:youbi]
+		# @newTimeConfig.start_hour = params[:s_hour]
+		# @newTimeConfig.start_minitus = params[:s_minitus]
+		# @newTimeConfig.end_hour = params[:e_hour]
+		# @newTimeConfig.end_minitus = params[:e_minitus]
+		@newTimeConfig.start_time = params[:start_time]
+		@newTimeConfig.end_time = params[:end_time]
+		$youbi = params[:start_time]
+		@newTimeConfig.youbi = $youbi.weeks
 		@newTimeConfig.activation = 0
 		@newTimeConfig.save
 	end
