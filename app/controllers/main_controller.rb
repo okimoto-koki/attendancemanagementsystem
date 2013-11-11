@@ -67,15 +67,18 @@ class MainController < ApplicationController
 
 	def admin_time_config_new
 		@newTimeConfig = TimeConfig.new
-		# @newTimeConfig.youbi = params[:youbi]
-		# @newTimeConfig.start_hour = params[:s_hour]
-		# @newTimeConfig.start_minitus = params[:s_minitus]
-		# @newTimeConfig.end_hour = params[:e_hour]
-		# @newTimeConfig.end_minitus = params[:e_minitus]
-		@newTimeConfig.start_time = params[:start_time]
-		@newTimeConfig.end_time = params[:end_time]
-		$youbi = params[:start_time]
-		@newTimeConfig.youbi = $youbi.weeks
+		@newTimeConfig.youbi = params[:youbi]
+		@newTimeConfig.start_hour = params[:s_hour]
+		@newTimeConfig.start_minitus = params[:s_minitus]
+		@newTimeConfig.end_hour = params[:e_hour]
+		@newTimeConfig.end_minitus = params[:e_minitus]
+		
+		####ex######
+		# @newTimeConfig.start_time = params[:start_time]
+		# @newTimeConfig.end_time = params[:end_time]
+		# $youbi = params[:start_time]
+		# @newTimeConfig.youbi = $youbi.weeks
+		############
 		@newTimeConfig.activation = 0
 		@newTimeConfig.save
 	end
