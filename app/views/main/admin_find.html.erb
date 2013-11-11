@@ -5,6 +5,27 @@
 <%= text_field_tag("number", params[:number]) %><br>
 <%= submit_tag "検索" %>
 <% end %>
+<table border="1">
+<thead>
+	<tr>
+		<th>名前</th>
+		<th>学生番号</th>
+		<th>メールアドレス</th>	
+		<th>検索</th>
+	</tr>
+</thead>
+<br>
+<tbody>
+<% @adminFind.each do |userinfo| %>
+	<tr>
+ 		<td><%= userinfo.name %></td>
+ 		<td><%= userinfo.number%></td>
+ 		<td><%= userinfo.email%></td>
+ 		<td><%= link_to "検索", { :action => "admin_result", :number => userinfo.number },  :method => :post %></td>
+ 	</tr>
+<% end %>
+</tbody>
+</table>
 
 <p>
 <%= link_to 'TOP', 'admin_index' %>
