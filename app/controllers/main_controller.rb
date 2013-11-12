@@ -119,7 +119,7 @@ class MainController < ApplicationController
 	def admin_time_config_destroy
 		@d_timeconfig = TimeConfig.find_by id: params[:id]
 		@d_timeconfig.delete
-		# redirect_to :back
+		redirect_to :back
 	end
 
 end
