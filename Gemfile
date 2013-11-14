@@ -31,6 +31,8 @@ gem 'devise', '~>3.0.0rc'
 
 gem "better_errors", "~> 1.0.1"
 
+gem 'kaminari'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

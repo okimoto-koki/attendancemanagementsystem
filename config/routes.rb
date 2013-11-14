@@ -13,6 +13,7 @@ Attendancemanagementsystem2::Application.routes.draw do
   get 'index_all' => 'main#index_all'
   get 'admin_index' => 'main#admin_index'
   get 'admin_find' => 'main#admin_find'
+  get 'admin_result' => 'main#admin_result'
   post 'admin_result' => 'main#admin_result'
   get 'admin_time_config' => 'main#admin_time_config'
     get 'ex_admin_time_config' => 'main#ex_admin_time_config'

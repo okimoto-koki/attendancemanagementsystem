@@ -6,11 +6,11 @@ class MainController < ApplicationController
 ##UserinfoとUserの違い => 出席時間や遅刻判定を持っているのがUserinfo  Deviceが作ったのがUser 両方にnameとnumberがある
 
 	def index
-		@userinfo = Userinfo.order("time DESC").limit(10).find_all_by_userId(current_user.id)	
+		@userinfo = Userinfo.order("time DESC").limit(10).find_all_by_userId(current_user.id)
 	end
 
 	def index_all
-		@userinfoall = Userinfo.order("time DESC").limit(50).find_all_by_userId(current_user.id)	
+		@userinfoall = Kaminari.paginate_array(Userinfo.order("time DESC").find_all_by_userId(current_user.id)).page(params[:page]).per(15)
 	end
 
 	def new
@@ -66,16 +66,16 @@ class MainController < ApplicationController
 	########以下管理者用########
 
 	def admin_index
-		@adminUserinfo = Userinfo.order("time DESC").all
+		@adminUserinfo = Kaminari.paginate_array(Userinfo.order("time DESC").all).page(params[:page]).per(10)
 	end
 
 	def admin_find
-		@adminFind = User.order("number DESC").all
+		@adminFind = Kaminari.paginate_array(User.order("number DESC").all).page(params[:page]).per(10)
 	end
 
 	def admin_result
 		@resultUser = User.find_by number: params[:number]
-		@userinfoall = Userinfo.order("time DESC").limit(50).find_all_by_userId(@resultUser.id)
+		@userinfoall = Kaminari.paginate_array(Userinfo.order("time DESC").limit(50).find_all_by_userId(@resultUser.id)).page(params[:page]).per(10)
 	end
 
 	def admin_time_config

@@ -6,7 +6,7 @@
 <%= link_to 'プロフィール編集', 'edit' %>
 <%= link_to '個人用へ', 'index' %><br>
 
-新規５０件
+<br>
 <table border="1">
 <thead>
 	<tr>
@@ -20,6 +20,7 @@
 </thead>
 <br>
 <tbody>
+<%= paginate @adminUserinfo %>
 <% @adminUserinfo.each do |userinfo| %>
 	<tr>
  		<td><%= userinfo.name %></td>

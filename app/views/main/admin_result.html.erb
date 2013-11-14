@@ -16,6 +16,7 @@
 </thead>
 <br>
 <tbody>
+<%= paginate @userinfoall %>
 <% @userinfoall.each do |userinfo| %>
 	<tr>
  		<td><%= userinfo.name %></td>
