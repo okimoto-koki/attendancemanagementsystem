@@ -90,9 +90,9 @@ class MainController < ApplicationController
 		@resultUser = User.find_by number: params[:number]
 		@userinfoall = Kaminari.paginate_array(Userinfo.order("time DESC").limit(50).find_all_by_userId(@resultUser.id)).page(params[:page]).per(10)
 
-		###now####
-		$count = Userinfo.where(["number = ? and check = ?",@resultUser.id, 0]).count
-		##########
+		# ###now####
+		# $count = Userinfo.where(["number = ? and check = ?",@resultUser.id, 0]).count
+		# ##########
 
 	end
 

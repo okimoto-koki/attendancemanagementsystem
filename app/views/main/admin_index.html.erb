@@ -24,7 +24,7 @@
 	<tr>
  		<td><%= userinfo.name %></td>
  		<td><%= userinfo.number%></td>
- 		<td><%= userinfo.time%></td>
+ 		<td><%= userinfo.time.strftime("%m月%d日 %H時%M分%S秒")%></td>
  		<td><%= userinfo.check %></td>
  		<td><%= button_to "削除", { :action => "destroy", :id => userinfo.id }, :confirm => "本当に削除しますか?", :method => :delete %></td>
  	</tr>
