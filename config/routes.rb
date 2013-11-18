@@ -11,6 +11,7 @@ Attendancemanagementsystem2::Application.routes.draw do
   get 'edit' => 'main#edit'
   post 'update' => 'main#update'
   get 'index_all' => 'main#index_all'
+  get 'check_error' => 'main#check_error'
   get 'admin_index' => 'main#admin_index'
   get 'admin_find' => 'main#admin_find'
   get 'admin_result' => 'main#admin_result'

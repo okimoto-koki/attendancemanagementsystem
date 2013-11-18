@@ -6,8 +6,10 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+  -ruby 1.9.3p194 (2012-04-20 revision 35410) [i686-linux]
 
 * System dependencies
+  -ubuntu13.04
 
 * Configuration
 

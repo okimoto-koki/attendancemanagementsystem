@@ -13,7 +13,7 @@
 	["5(16:45~18:15)", 5], 
 	["6(18:30~20:00)", 6]
 ]) %>
-コマ
+コマ(１０分前から登録できる)
 
 <%= submit_tag "登録" %>
 <% end %>
@@ -40,8 +40,8 @@
 	<tr>
 		<td><%= index.id %></td>
  		<td><%= index.youbi %></td>
- 		<td><%= index.start_hour%></td>
- 		<td><%= index.start_minitus%></td>
+ 		<td><%= index.check_hour%></td>
+ 		<td><%= index.check_minutes%></td>
  		<td><%= index.end_hour %></td>
  		<td><%= index.end_minitus %></td>
  		<td>

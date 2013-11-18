@@ -1,0 +1,37 @@
+<h1>登録エラー</h1>
+<p>管理者によって出席時間が設定されていません</p>
+<p>現在設定されている出席時間は以下の通りです</p>
+
+
+<p>
+
+<table border="1">
+<thead>
+	<tr>
+		<th>id</th>
+		<th>曜日</th>
+		<th>開始時</th>
+		<th>開始分</th>
+		<th>終了時</th>
+		<th>終了分</th>
+	</tr>
+</thead>
+<br>
+<tbody>
+<% @errorCheck.each do |index| %>
+	<tr>
+		<td><%= index.id %></td>
+ 		<td><%= index.youbi %></td>
+ 		<td><%= index.check_hour%></td>
+ 		<td><%= index.check_minutes%></td>
+ 		<td><%= index.end_hour %></td>
+ 		<td><%= index.end_minitus %></td>
+  	</tr>
+<% end %>
+</tbody>
+</table>
+</p>
+
+<p>
+<%= link_to 'TOP', 'admin_index' %>
+</p>
