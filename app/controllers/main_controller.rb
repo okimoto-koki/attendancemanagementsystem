@@ -21,9 +21,21 @@ class MainController < ApplicationController
 		@newUserinfo.userId = current_user.id
 		@newUserinfo.time = Time.now
 
-		##データベースから判定対象の時間設定を持ってくる　今のところactiveで曜日が合っているもののみ
-		@timeCheck = TimeConfig.where(["activation = ? and youbi = ? ", 1, @newUserinfo.time.wday]).first
+		##データベースから判定対象の時間設定を持ってくる
+		@timeCheck = TimeConfig.where([
+			"activation = ? 
+			and youbi = ? 
+			and start_hour <= ? 
+			and start_minitus <= ? 
+			and end_hour >= ? ",
+			1, 
+			@newUserinfo.time.wday, 
+			@newUserinfo.time.hour, 
+			@newUserinfo.time.min, 
+			@newUserinfo.time.hour, 
+			]).first
 		
+		#######refリファクタリング予定地#########
 		#データベースから値を取ってこれなかった時用の例外処理
 		begin
 			#####遅刻判定部分true(1)で出席#####
@@ -43,6 +55,7 @@ class MainController < ApplicationController
 			@newUserinfo.check = nil
 		end
 		###############################
+
 		@newUserinfo.save
 	end
 
@@ -76,6 +89,11 @@ class MainController < ApplicationController
 	def admin_result
 		@resultUser = User.find_by number: params[:number]
 		@userinfoall = Kaminari.paginate_array(Userinfo.order("time DESC").limit(50).find_all_by_userId(@resultUser.id)).page(params[:page]).per(10)
+
+		###now####
+		$count = Userinfo.where(["number = ? and check = ?",@resultUser.id, 0]).count
+		##########
+
 	end
 
 	def admin_time_config
@@ -85,23 +103,50 @@ class MainController < ApplicationController
 	def admin_time_config_new
 		@newTimeConfig = TimeConfig.new
 		@newTimeConfig.youbi = params[:youbi]
-		@newTimeConfig.start_hour = params[:s_hour]
-		@newTimeConfig.start_minitus = params[:s_minitus]
-		@newTimeConfig.end_hour = params[:e_hour]
-		@newTimeConfig.end_minitus = params[:e_minitus]
 		
-		####ex######
-		# @newTimeConfig.start_time = params[:start_time]
-		# @newTimeConfig.end_time = params[:end_time]
-		# $youbi = params[:start_time]
-		# @newTimeConfig.youbi = $youbi.weeks
-		############
+		####refリファクタリング予定地####
+		#コマで時間設定
+		case params[:koma] 
+		when "1" then
+			@newTimeConfig.start_hour = 9
+    			@newTimeConfig.start_minitus = 0
+    			@newTimeConfig.end_hour = 10
+   			@newTimeConfig.end_minitus = 30
+   		when "2" then
+   			@newTimeConfig.start_hour = 10
+    			@newTimeConfig.start_minitus = 45
+    			@newTimeConfig.end_hour = 12
+   			@newTimeConfig.end_minitus = 15
+   		when "3" then
+   			@newTimeConfig.start_hour = 13
+    			@newTimeConfig.start_minitus = 15
+    			@newTimeConfig.end_hour = 14
+   			@newTimeConfig.end_minitus = 45
+   		when "4" then
+   			@newTimeConfig.start_hour = 15
+    			@newTimeConfig.start_minitus = 0
+    			@newTimeConfig.end_hour = 16
+   			@newTimeConfig.end_minitus = 30
+   		when "5" then
+   			@newTimeConfig.start_hour = 16
+    			@newTimeConfig.start_minitus = 45
+    			@newTimeConfig.end_hour = 18
+   			@newTimeConfig.end_minitus = 15
+   		when "6" then
+   			@newTimeConfig.start_hour = 18
+    			@newTimeConfig.start_minitus = 30
+    			@newTimeConfig.end_hour = 20
+   			@newTimeConfig.end_minitus = 0
+   		end
+   		##########################
+		
 
 		#初期化
 		@newTimeConfig.activation = 0
 		@newTimeConfig.save
 	end
 
+	##時間設定の有効化##
 	def admin_time_config_active_on
 		@active_timeconfig = TimeConfig.find_by id: params[:id]
 		@active_timeconfig.activation = 1
@@ -109,6 +154,7 @@ class MainController < ApplicationController
 		redirect_to :back
 	end
 
+	##時間設定の無効化##
 	def admin_time_config_active_off
 		@active_timeconfig = TimeConfig.find_by id: params[:id]
 		@active_timeconfig.activation = 0
