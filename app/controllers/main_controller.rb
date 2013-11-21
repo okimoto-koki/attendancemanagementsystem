@@ -105,7 +105,7 @@ class MainController < ApplicationController
 		
 		####refリファクタリング予定地####
 		#コマで時間設定
-		#１０分前から登録できる　１０分過ぎると遅刻
+		#１０分前から登録できる
 		case params[:koma] 
 		when "1" then
 			@newTimeConfig.start_hour = 8
