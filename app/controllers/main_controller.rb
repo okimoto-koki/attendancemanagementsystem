@@ -1,9 +1,9 @@
 class MainController < ApplicationController
 	before_filter :authenticate_user!
 	
-##基本的にメソッド名と同じviewが対応している
+	##基本的にメソッド名と同じviewが対応している
 
-##UserinfoとUserの違い => 出席時間や遅刻判定を持っているのがUserinfo  Deviceが作ったのがUser 両方にnameとnumberがある
+	##UserinfoとUserの違い => 出席時間や遅刻判定を持っているのがUserinfo  Deviceが作ったのがUser 両方にnameとnumberがある
 
 	def index
 		@userinfo = Userinfo.order("time DESC").limit(10).find_all_by_userId(current_user.id)
@@ -22,6 +22,7 @@ class MainController < ApplicationController
 		@newUserinfo.time = Time.now
 
 		##データベースから判定対象の時間設定を持ってくる
+		## 2013/11/21　３と４限を設定しておき、14時50分以降に登録すると4限ではなく3限（遅刻）として判断される
 		@timeCheck = TimeConfig.where([
 			"activation = ? 
 			and youbi = ? 
@@ -33,12 +34,12 @@ class MainController < ApplicationController
 			@newUserinfo.time.hour
 			]).first
 		
-		#######refリファクタリング予定地#########
+		#######refリファクタリング予定地#######
 		#データベースから値を取ってこれなかった時用の例外処理
 		begin
 		#####遅刻判定部分true(1)で出席#####
-		#登録した時間のminがcheck_minutes以下　もしくは (hourがcheck_hourと同じ　かつ　minがcheck_minutes以下) 
-		if @newUserinfo.time.min <= @timeCheck.check_minutes || (@newUserinfo.time.hour == @timeCheck.check_hour && @newUserinfo.time.min <= @timeCheck.check_minutes) 
+		#登録した時間のminがcheck_minutes以下　もしくは (hourがcheck_hourと同じ　かつ　minがcheck_minutes以下)もしくはhourがcheck_hour未満
+		if @newUserinfo.time.min <= @timeCheck.check_minutes || (@newUserinfo.time.hour == @timeCheck.check_hour && @newUserinfo.time.min <= @timeCheck.check_minutes) || @newUserinfo.time.hour < @timeCheck.check_hour
 		then
 			@newUserinfo.check = true
 			@newUserinfo.save
