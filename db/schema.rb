@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131118055409) do
+ActiveRecord::Schema.define(version: 20131121045330) do
 
   create_table "time_configs", force: true do |t|
     t.integer  "youbi"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20131118055409) do
     t.datetime "time"
     t.integer  "userId"
     t.boolean  "check"
+    t.integer  "check_count"
   end
 
   create_table "users", force: true do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20131118055409) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "number"
+    t.integer  "check_count"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

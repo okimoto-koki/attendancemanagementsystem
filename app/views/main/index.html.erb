@@ -1,4 +1,9 @@
 <h1>松本ゼミ勤怠管理(個人用)</h1>
+<%= link_to '登録', 'new' %>
+<%= link_to 'プロフィール編集', 'edit' %>
+<%= link_to '履歴', 'index_all' %>
+<%= link_to '管理者用ページ', 'admin_index' %>
+<br>
 falseが遅刻
 <table border="1">
 <thead>
@@ -23,12 +28,6 @@ falseが遅刻
 </table>
 
  <br><br>
-
-<%= link_to '登録', 'new' %>
-<%= link_to 'プロフィール編集', 'edit' %>
-<%= link_to '履歴', 'index_all' %>
-<%= link_to '管理者用ページ', 'admin_index' %>
-<br><br>
 
 <% if user_signed_in? %>
           Logged in as <strong><%= current_user.name %></strong>.

@@ -21,6 +21,7 @@ class MainController < ApplicationController
 		@newUserinfo.userId = current_user.id
 		@newUserinfo.time = Time.now
 
+
 		##データベースから判定対象の時間設定を持ってくる
 		## 2013/11/21　３と４限を設定しておき、14時50分以降に登録すると4限ではなく3限（遅刻）として判断される
 		@timeCheck = TimeConfig.where([
@@ -38,13 +39,20 @@ class MainController < ApplicationController
 		#データベースから値を取ってこれなかった時用の例外処理
 		begin
 		#####遅刻判定部分true(1)で出席#####
-		#登録した時間のminがcheck_minutes以下　もしくは (hourがcheck_hourと同じ　かつ　minがcheck_minutes以下)もしくはhourがcheck_hour未満
-		if @newUserinfo.time.min <= @timeCheck.check_minutes || (@newUserinfo.time.hour == @timeCheck.check_hour && @newUserinfo.time.min <= @timeCheck.check_minutes) || @newUserinfo.time.hour < @timeCheck.check_hour
+		#登録した時間の(hourがcheck_hourと同じ　かつ　minがcheck_minutes以下)　もしくは (hourがcheck_hourと同じ　かつ　minがcheck_minutes以下)もしくはhourがcheck_hour未満
+		if (@newUserinfo.time.hour == @timeCheck.check_hour && @newUserinfo.time.min <= @timeCheck.check_minutes) || (@newUserinfo.time.hour == @timeCheck.check_hour && @newUserinfo.time.min <= @timeCheck.check_minutes) || @newUserinfo.time.hour < @timeCheck.check_hour
 		then
 			@newUserinfo.check = true
 			@newUserinfo.save
 		else 
 			@newUserinfo.check = false
+			@user = User.find_by number: @newUserinfo.number
+			if @user.check_count == nil then
+				@user.check_count = 1
+			else
+				@user.check_count = @user.check_count.to_i + 1
+			end
+			@user.save
 			@newUserinfo.save
 		end
 		#データベースに値が無い場合、遅刻判定にnil(何もなし)を入れる
@@ -67,6 +75,9 @@ class MainController < ApplicationController
 
 	def destroy
 		@d_userinfo = Userinfo.find_by id: params[:id]
+		@d_user = User.find_by number: @d_userinfo.number
+		@d_user.check_count = @d_user.check_count.to_i - 1
+		@d_user.save
 		@d_userinfo.delete
 		redirect_to :back
 	end
