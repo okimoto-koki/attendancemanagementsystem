@@ -24,6 +24,7 @@ class MainController < ApplicationController
 
 		##データベースから判定対象の時間設定を持ってくる
 		## 2013/11/21　３と４限を設定しておき、14時50分以降に登録すると4限ではなく3限（遅刻）として判断される
+		#1-2,3-4,4-5,5-6も
 		@timeCheck = TimeConfig.where([
 			"activation = ? 
 			and youbi = ? 
